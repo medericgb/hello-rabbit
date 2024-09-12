@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { EventPattern } from '@nestjs/microservices';
+import { EventPattern, Payload } from '@nestjs/microservices';
 
 type Profile = {
   userId: number;
@@ -13,7 +13,7 @@ export class PaymentsService {
   private paymentProfiles: Profile[] = [];
 
   @EventPattern('user_created')
-  handleUserCreated(user: any) {
+  handleUserCreated(@Payload() user: any) {
     const paymentProfile = {
       userId: user.id,
       balance: 0,
@@ -25,7 +25,7 @@ export class PaymentsService {
   }
 
   @EventPattern('user_updated')
-  handleUserUpdated(user: any) {
+  handleUserUpdated(@Payload() user: any) {
     const profile = this.paymentProfiles.find((p) => p.userId === user.id);
 
     if (profile) {
