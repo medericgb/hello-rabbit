@@ -4,7 +4,7 @@ import { AppService } from './app.service';
 import { UsersModule } from './users/users.module';
 import { PaymentsModule } from './payments/payments.module';
 import { CacheModule } from '@nestjs/cache-manager';
-import * as redisStore from 'cache-manager-redis-store';
+// import { redisStore } from 'cache-manager-redis-store';
 
 @Module({
   imports: [
@@ -14,9 +14,9 @@ import * as redisStore from 'cache-manager-redis-store';
       max: 100,
       ttl: 60,
       isGlobal: true,
-      store: redisStore,
-      host: 'localhost',
-      port: 6379,
+      // store: redisStore,
+      // host: 'localhost',
+      // port: 6379,
     }),
   ],
   controllers: [AppController],
