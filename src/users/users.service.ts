@@ -20,7 +20,7 @@ export class UsersService {
     const updatedUser = { id: userId, ...updateUserDto };
     
     // Emit an event to RabbitMQ to update payment profile
-    await this.client.emit('user_updated', updatedUser);
+    this.client.emit('user_updated', updatedUser);
     return updatedUser;
   }
 }
